@@ -33,7 +33,7 @@
 </template>
 
 <script>
-
+import { findById } from '@/helpers'
 export default {
  
   props: {
@@ -51,7 +51,7 @@ return this.$store.state.users
   },
   methods: {
     userById (userId) {
-      return this.users.find(p => p.id === userId)
+      return findById(this.users, userId)
     },
   }
 }

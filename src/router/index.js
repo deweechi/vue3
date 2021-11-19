@@ -2,11 +2,13 @@ import Home from '@/pages/Home.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import ThreadShow from '@/pages/ThreadShow'
 import ThreadCreate from '@/pages/ThreadCreate'
+import ThreadEdit from '@/pages/ThreadEdit'
 import NotFound from '@/pages/NotFound'
 import Category from '@/pages/Category'
 import sourceData from '@/data.json'
 import Forum from '@/pages/Forum'
 import Profile from '@/pages/Profile'
+import { findById } from '@/helpers'
 
 const routes = [
     {
@@ -47,7 +49,7 @@ const routes = [
         component: ThreadShow,
         props: true,
         beforeEnter (to, from, next) {
-            const threadExists = sourceData.threads.find(thread => thread.id ===to.params.id)
+            const threadExists = findById(sourceData.threads, to.params.id)
             if(threadExists){
                 return next()
             } else {
@@ -61,9 +63,15 @@ const routes = [
         }
     },
     {
-        path:'/form/:forumId/thread/create',
+        path:'/forum/:forumId/thread/create',
         name:'ThreadCreate',
         component: ThreadCreate,
+        props: true
+    },
+    {
+        path:'/thread/:id/edit',
+        name:'ThreadEdit',
+        component: ThreadEdit,
         props: true
     },
     { 
