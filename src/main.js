@@ -2,6 +2,14 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import store from '@/store'
 import router from '@/router'
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import firebaseConfig from '@/config/firebase'
+
+// Initialize Firebase
+const fireapp = initializeApp(firebaseConfig);
+const analytics = getAnalytics(fireapp);
 
 
 const forumApp = createApp(App)

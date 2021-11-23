@@ -8,7 +8,7 @@
       <div v-for="thread in threads" :key="thread.id" class="thread">
         <div>
           <p>
-            <router-link :to="{name: 'ThreadShow', params:{id:thread.id}}">{{ thread.title }}</router-link>
+            <router-link v-if="thread.id" :to="{name: 'ThreadShow', params:{id:thread.id}}">{{ thread.title }}</router-link>
           </p>
           <p class="text-faded text-xsmall">
             By <a href="">{{ userById(thread.userId).name }}</a>, <app-date :timestamp="thread.publishedAt" />.
@@ -17,7 +17,7 @@
 
         <div class="activity">
           <p class="replies-count">
-           {{ thread.posts.length }} replies
+           {{ thread.repliesCount }} replies
           </p>
 
           <img class="avatar-medium" :src="userById(thread.userId).avatar" alt="">
@@ -59,7 +59,7 @@ return this.$store.state.users
       return findById(this.posts, postId)
     },
     userById (userId) {
-      return findById(this.users, userId)
+      return findById(this.users, userId) || {}
     }
   }
 }

@@ -5,14 +5,15 @@
          :key="post.id"
     >
 
-      <div class="user-info">
+      <div v-if="userById(post.userId)" class="user-info">
         <a href="#" class="user-name">{{userById(post.userId).name}}</a>
 
         <a href="#">
           <img class="avatar-large" :src="userById(post.userId).avatar" alt="">
         </a>
 
-        <p class="desktop-only text-small">107 posts</p>
+        <p class="desktop-only text-small">{{userById(post.userId).postsCount}} posts</p>
+        <p class="desktop-only text-small">{{userById(post.userId).threadsCount}} threads</p>
 
       </div>
 
@@ -33,7 +34,7 @@
 </template>
 
 <script>
-import { findById } from '@/helpers'
+
 export default {
  
   props: {
@@ -51,7 +52,7 @@ return this.$store.state.users
   },
   methods: {
     userById (userId) {
-      return findById(this.users, userId)
+      return this.$store.getters.user(userId)      
     },
   }
 }

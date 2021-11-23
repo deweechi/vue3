@@ -11,6 +11,7 @@
     "@vue/compat": "^3.1.0",
     "core-js": "^3.6.5",
     "dayjs": "^1.10.7",
+    "firebase": "^9.5.0",
     "vue": "^3.2.21",
     "vue-router": "^4.0.12",
     "vuex": "^4.0.2"
@@ -27,7 +28,8 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
-    "eslint-plugin-vue": "^7.0.0-0"
+    "eslint-plugin-vue": "^7.0.0-0",
+    "firestore-export-import": "^0.17.0"
   },
   "browserslist": [
     "> 1%",

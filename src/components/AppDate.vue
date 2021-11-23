@@ -1,6 +1,6 @@
 <template>
-   <span :title="formatDate()">
-        {{formatDateDiff()}}
+   <span :title="formatDate">
+        {{formatDateDiff}}
       </span>
 </template>
 
@@ -12,7 +12,7 @@ export default {
     props: {
         timestamp:{
             required:true,
-            type: Number
+            type: [Number, Object]
         }
     },
  methods: {

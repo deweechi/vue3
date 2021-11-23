@@ -7,7 +7,14 @@
         tag="button"
       > Edit Thread</router-link>
     </h1>
-
+ <p>
+      By <a href="#" class="link-unstyled">{{thread.author?.name}}</a>, <AppDate :timestamp="thread?.publishedAt" />.
+      <span
+        style="float:right; margin-top: 2px;"
+        class="hide-mobile text-faded text-small"
+        >{{thread?.repliesCount}} replies by {{thread?.contributorsCount}} contributors</span
+      >
+    </p>
     <post-list :posts="threadPosts" />
 
     <post-editor @save="addPost"/>
@@ -19,7 +26,6 @@
 <script>
 import PostList from '@/components/PostList.vue'
 import PostEditor from '@/components/PostEditor'
-import { findById } from '@/helpers'
 
 export default {
   components: { 
@@ -40,7 +46,7 @@ export default {
         return this.$store.state.posts
       },
         thread() {
-            return findById(this.threads, this.id)
+            return this.$store.getters.thread(this.id)
         },
         threadPosts () {
             return this.posts.filter(post => post.threadId === this.id)
@@ -54,6 +60,18 @@ export default {
       }
      this.$store.dispatch('createPost', post)
     }
+  },
+  async created(){
+
+    const thread = await this.$store.dispatch('fetchThread', {id: this.id})
+    this.$store.dispatch('fetchUser', {id: thread.userId})
+
+    //fetch the posts associated with the thread.
+    const posts = await this.$store.dispatch('fetchPosts', {ids: thread.posts})   
+    //fetch the user (author) associated with each post.
+    const users = posts.map(post => post.userId)
+    this.$store.dispatch('fetchUsers', {ids:users})
+
   }
 }
 </script>
