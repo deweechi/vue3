@@ -23,8 +23,11 @@
             {{post.text}}
           </p>
         </div>
+        <a href="#" style="margin-left: auto; padding-left:10px;" class="link-unstyled" title="Make a change">
+          <fa icon="pencil-alt" />
+        </a>
       </div>
-      <app-date class="post-date text-faded" :timestamp="post.publishedAt" />
+      <AppDate class="post-date text-faded" :timestamp="post?.publishedAt" />
 
      
 

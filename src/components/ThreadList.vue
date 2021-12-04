@@ -11,7 +11,7 @@
             <router-link v-if="thread.id" :to="{name: 'ThreadShow', params:{id:thread.id}}">{{ thread.title }}</router-link>
           </p>
           <p class="text-faded text-xsmall">
-            By <a href="">{{ userById(thread.userId).name }}</a>, <app-date :timestamp="thread.publishedAt" />.
+            By <a href="">{{ userById(thread.userId).name }}</a>, <AppDate :timestamp="thread?.publishedAt" />.
           </p>
         </div>
 
@@ -26,7 +26,7 @@
             <p class="text-xsmall">
               <a href="#">{{ userById(thread.userId).name }}</a>
             </p>
-            <p class="text-xsmall text-faded"><app-date :timestamp="thread.publishedAt" /></p>
+            <p class="text-xsmall text-faded"><AppDate :timestamp="thread?.publishedAt" /></p>
           </div>
         </div>
       </div>

@@ -6,6 +6,9 @@ import router from '@/router'
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import firebaseConfig from '@/config/firebase'
+import FontAwesome from '@/plugins/FontAwesome'
+
+
 
 // Initialize Firebase
 const fireapp = initializeApp(firebaseConfig);
@@ -15,6 +18,7 @@ const analytics = getAnalytics(fireapp);
 const forumApp = createApp(App)
 forumApp.use(router)
 forumApp.use(store)
+forumApp.use(FontAwesome)
 
 //Globally register components that Start with the App prefix
 const requireComponent = require.context("./components", true, /App[A-Z]\w+\.(vue|js)$/)
